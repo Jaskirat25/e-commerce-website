@@ -7,6 +7,9 @@ router.get("/",(req,res)=>{
 router.get("/p",(req,res)=>{
     res.send("hi");
 });
+router.get("/profile",(req,res)=>{
+    res.send("hi");
+});
 
 
 module.exports=router;
