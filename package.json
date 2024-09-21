@@ -10,7 +10,9 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "config": "^3.3.12",
     "cookie-parser": "^1.4.6",
+    "debug": "^4.3.7",
     "express": "^4.21.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.6.2",
