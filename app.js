@@ -6,7 +6,7 @@ const db=require("./config/mongoose")
 
 const userRouter=require("./routes/userRouter")
 const productRouter=require("./routes/productRouter")
-const customerRouter=require("./routes/customerRouter")
+const ownerRouter=require("./routes/ownerRouter")
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookie())
@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname,"public")));
 
 app.use("/userRoute",userRouter);
 app.use("/productRoute",productRouter);
-app.use("/customerRoute",customerRouter);
+app.use("/ownerRoute",ownerRouter);
 
 
 app.get("/",(req,res)=>{
