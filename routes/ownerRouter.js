@@ -1,5 +1,6 @@
 const express=require("express");
 const router=express.Router()
+
 const User=require("../models/owner-model")
 const bcrypt=require("bcrypt")
 router.get("/",(req,res)=>{
@@ -12,9 +13,9 @@ router.post("/register",(req,res)=>{
 bcrypt.hash(password,salt, async (err,hash)=>{
 if(err)return res.status(500).send(err.message);
 else{
-    let{fullname,password,email}= req.body;
+    let{username,password,email}= req.body;
     const Createduser= await User.create({
-        fullname,
+        username,
         email,
         password:hash
     })

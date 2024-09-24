@@ -1,7 +1,7 @@
 const mongoose= require("mongoose");
 
 const user=mongoose.Schema({
-    fullname:{
+    username:{
    type:String,
 required:true,
 minlength:3
@@ -19,6 +19,6 @@ minlength:8
     }
 })
 
-module.exports=mongoose.model('Owner',user);
+module.exports=mongoose.model('user',user);
 
 

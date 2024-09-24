@@ -3,6 +3,7 @@ const app = express();
 const cookie=require("cookie-parser");
 const path=require("path");
 const db=require("./config/mongoose")
+require('dotenv').config();
 
 const userRouter=require("./routes/userRouter")
 const productRouter=require("./routes/productRouter")
