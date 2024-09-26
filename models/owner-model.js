@@ -4,7 +4,7 @@ const user=mongoose.Schema({
     username:{
    type:String,
 required:true,
-minlength:3
+
     },
     password:
     {

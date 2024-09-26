@@ -4,7 +4,8 @@ const cookie=require("cookie-parser");
 const path=require("path");
 const db=require("./config/mongoose")
 require('dotenv').config();
-
+const  expressSession=require("express-session")
+const flash=require("connect-flash");
 const userRouter=require("./routes/userRouter")
 const productRouter=require("./routes/productRouter")
 const ownerRouter=require("./routes/ownerRouter")
@@ -17,7 +18,7 @@ app.use("/userRoute",userRouter);
 app.use("/productRoute",productRouter);
 app.use("/ownerRoute",ownerRouter);
 
-
+app.use(flash())
 app.get("/",(req,res)=>{
     res.send("hlo");
 })
