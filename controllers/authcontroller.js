@@ -1,5 +1,5 @@
 const { gentoken } = require("../utils/gentoken");
-const User = require("../models/owner-model");
+const User = require("../models/user-model");
 const bcrypt = require("bcrypt");
 
 const registereduser=async function (req, res){
@@ -45,7 +45,7 @@ if(!u)return res.send("wrong email or password");
     bcrypt.compare(password,u.password,(err,result)=>{
 if(result){const token=gentoken(u);
     res.cookie("token",token);
-    return res.send("you can login")}
+    return res.render("owner-login")}
 else return res.send("wrong password");
     })
     }
@@ -53,4 +53,8 @@ else return res.send("wrong password");
         return res.send(err.message);
     }
 }
-module.exports={registereduser,loginuser};
+const logout=async function(req,res){
+req.cookie("token","");
+res.redirect("/");
+}
+module.exports={registereduser,loginuser,logout};
