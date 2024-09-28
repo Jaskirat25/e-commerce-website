@@ -43,6 +43,11 @@ router.get("/create", (req, res) => {
   
     res.render("admin");
 });
+router.get("/", (req, res) => {
+  
+    res.render("index");
+});
+
 
 router.post("/register", registereduser);
 

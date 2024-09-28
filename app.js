@@ -20,11 +20,13 @@ app.use("/productRoute",productRouter);
 app.use("/ownerRoute",ownerRouter);
 app.use(expressSession({
     resave:false,
-    saveUninitialized:false,
+    saveUninitialized:true,
     secret:process.env.EXPRESS_SESSION_SECRET,
 }))
 app.use(flash());
-app.get("/",(req,res)=>{
-    res.render("index");
-})
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+  });
 app.listen("3000");

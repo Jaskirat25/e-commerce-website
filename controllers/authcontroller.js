@@ -2,40 +2,45 @@ const { gentoken } = require("../utils/gentoken");
 const User = require("../models/user-model");
 const bcrypt = require("bcrypt");
 
-const registereduser=async function (req, res){
-    try {
-        const { username, password, email } = req.body;
-       const u= await User.findOne({email})
-if(u)return res.status(401).send("you have already registered");
-        // Check if required fields are provided
-        if (!username || !password || !email) {
-            return res.status(400).send("All fields are required");
-        }
+const registereduser = async function (req, res) {
+  try {
+    const { fullname, password, email } = req.body;
 
-        // Generate salt and hash password asynchronously
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
-
-        // Create the user in the database
-        const createdUser = await User.create({
-            username,
-            email,
-            password: hashedPassword
-        });
-
-        // Generate token
-        const token = gentoken(createdUser);
-
-        // Set token in cookie
-        res.cookie("token", token);
-
-        // Send a response with success status and the token
-        res.status(201).send({ message: "User registered successfully", token });
-    } catch (err) {
-        console.error(err);
-        res.status(500).send(err.message);
+    // Check if user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      req.flash("error", "You have already registered");
+      return res.redirect("/register"); // Redirect with flash message
     }
+
+    // Input validation
+    if (!fullname || !password || !email) {
+      req.flash("error", "All fields are required");
+      return res.redirect("/register");
+    }
+
+    // Hash password and create user
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    const newUser = await User.create({ fullname, email, password: hashedPassword });
+
+    // Generate token and set cookie
+    const token = gentoken(newUser);
+    res.cookie("token", token);
+
+    // Set success flash message
+    req.flash("success", "Registration successful! Please log in.");
+
+    // Redirect to login or shop page with flash message
+    res.redirect("/shop"); // or res.render('shop', { token });
+  } catch (err) {
+    console.error(err);
+    req.flash("error", "Something went wrong. Please try again.");
+    res.status(500).redirect("/register");
+  }
 };
+
+
 const loginuser=async function(req,res){
 try{
 const{email,password}=req.body;
@@ -45,6 +50,7 @@ if(!u)return res.send("wrong email or password");
     bcrypt.compare(password,u.password,(err,result)=>{
 if(result){const token=gentoken(u);
     res.cookie("token",token);
+    req.flash("success","login successfull")
     return res.render("owner-login")}
 else return res.send("wrong password");
     })
