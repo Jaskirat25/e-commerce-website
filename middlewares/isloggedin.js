@@ -2,8 +2,8 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/owners-model");
 const isloggedin = async function (req, res, next) {
   if (!req.cookies.token) {
-    req.flash("you need to login first");
-    return res.redirect("/", { error });
+    
+    return res.redirect("/");
   }
   try {
     const decoded = jwt.verify(req.cookies.token, process.env.JWT_KEY);

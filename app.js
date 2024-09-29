@@ -24,9 +24,5 @@ app.use(expressSession({
     secret:process.env.EXPRESS_SESSION_SECRET,
 }))
 app.use(flash());
-app.use((req, res, next) => {
-    res.locals.success = req.flash('success');
-    res.locals.error = req.flash('error');
-    next();
-  });
+
 app.listen("3000");
