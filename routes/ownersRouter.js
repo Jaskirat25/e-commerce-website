@@ -3,7 +3,13 @@ const router = express.Router();
 
 const User = require("../models/owners-model.js");
 router.get("/", (req, res) => {
-  res.send("hdkfsjdfsi");
+  res.render("owner-login",{show:true})
+});
+router.get("/admin", (req, res) => {
+  res.render("admin")
+});
+router.get("/products", (req, res) => {
+  res.render("createproducts")
 });
 
 if (process.env.NODE_ENV === "development") {
@@ -21,11 +27,15 @@ if (process.env.NODE_ENV === "development") {
     res.status(200).send(created);
   });
 }
-router.get("/admin",(req,res)=>{
+// router.get("/create",(req,res)=>{
+//   res.render("createproducts")
+// });
+
+router.post("/check",(req,res)=>{
+let{password}=req.body;
+if(password==process.env.CODE){
   res.render("createproducts")
-});
-router.post("/productRoute/create",(req,res)=>{
-  res.render("createproducts")
+}else res.redirect("/");
 });
 
 module.exports = router;

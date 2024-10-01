@@ -15,11 +15,14 @@ router.post("/create", upload.single("image"), async (req, res) => {
     textcolor,
     panelcolor,
   });
-  res.send(product);
+  res.redirect("/userRoute/shop");
 }
 catch(err){
   console.log(err.message);
 }
+});
+router.post("/cart", async (req, res) => {
+ 
 });
 
 module.exports = router;

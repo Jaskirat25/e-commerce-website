@@ -1,16 +1,15 @@
 
 const express = require("express");
 const router = express.Router();
-const app=express();
+
 const {registereduser,loginuser,logout}=require("../controllers/authcontroller");
 const { isloggedin } = require("../middlewares/isloggedin");
 const productmodel=require("../models/product-model")
 
 
-router.get("/create", (req, res) => {
-  
-    res.render("admin");
-});
+
+
+
 router.get("/", (req, res) => {
   
     res.render("index",{show:true});
@@ -19,8 +18,8 @@ router.get("/cart", isloggedin,(req, res) => {
   
     res.render("cart");
 });
-router.get("/shop", isloggedin, async (req, res) => {
-const products=await productmodel.find();
+router.get("/shop", async (req, res) => {
+    const products=await productmodel.find();
  res.render("shop",{products});
 });
 

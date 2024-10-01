@@ -41,10 +41,12 @@ const u=await User.findOne({email});
 if(!u)return res.send("wrong email or password");
 
     bcrypt.compare(password,u.password,(err,result)=>{
-if(result){const token=gentoken(u);
+if(result){
+  const token=gentoken(u);
+ 
     res.cookie("token",token);
  
-    return res.render("owner-login")}
+    return res.redirect("shop")}
 else return res.send("wrong password");
     })
     }
@@ -54,6 +56,6 @@ else return res.send("wrong password");
 }
 const logout=async function(req,res){
   res.cookie("token","");
-res.redirect("/userRoute");
+res.redirect("/");
 }
 module.exports={registereduser,loginuser,logout};
