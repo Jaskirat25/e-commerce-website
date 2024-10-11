@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+</head>
+<body class="bg-gray-100 p-10">
+    <h1 class="text-2xl font-bold mb-5">Edit Product</h1>
+    <form action="/ownerRoute/edit/<%= product._id %>" method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded-lg shadow-md">
+        <div class="mb-4">
+            <label for="image" class="block text-gray-700">Image:</label>
+            <input value="image"  type="file" id="image" name="image" accept="image/*" class="mt-1 p-2 border border-gray-300 rounded w-full" />
+        </div>
+        <div class="mb-4">
+            <label for="price" class="block text-gray-700">Price:</label>
+            <input type="number" id="price" name="price" value="<%= product.price %>" class="mt-1 p-2 border border-gray-300 rounded w-full" required />
+        </div>
+        <div class="mb-4">
+            <label for="discount" class="block text-gray-700">Discount:</label>
+            <input type="number" id="discount" name="discount" value="<%= product.discount %>" class="mt-1 p-2 border border-gray-300 rounded w-full" />
+        </div>
+        <div class="mb-4">
+            <label for="textcolor" class="block text-gray-700">Text Color:</label>
+            <input value="<%=product.textcolor%>" type="string" id="textcolor" name="textcolor" value="<%= product.textcolor %>" class="mt-1 p-2 border border-gray-300 rounded w-full" />
+        </div>
+        <div class="mb-4">
+            <label for="panelcolor" class="block text-gray-700">Panel Color:</label>
+            <input  type="string" id="panelcolor" name="panelcolor" value="<%= product.panelcolor %>" class="mt-1 p-2 border border-gray-300 rounded w-full" />
+        </div>
+        <div class="mb-4">
+            <label for="bgcolor" class="block text-gray-700">Background Color:</label>
+            <input  type="string" id="bgcolor" name="bgcolor" value="<%= product.bgcolor %>" class="mt-1 p-2 border border-gray-300 rounded w-full" />
+        </div>
+        <button type="submit" class="bg-blue-500 text-white rounded-lg px-4 py-2">Save Changes</button>
+    </form>
+</body>
+</html>

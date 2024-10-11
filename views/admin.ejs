@@ -1,113 +1,37 @@
 <%- include('header') %>
-    <div class="w-full h-screen flex items-start px-20 py-20">
-        <div class="w-[25%] flex h-screen flex-col items-start">
-            <div class="flex flex-col">
-                <a class="block w-fit mb-2" href="/ownerRoute/admin">All Products</a>
-                <a class="block w-fit mb-2" href="/ownerRoute/products">Create new product</a>
-            </div>
-        </div>
-        <div class="w-[75%] flex flex-col gap-5 h-screen">
-            <a class="text-red-500" href="">Delete all</a>
-            <div class="flex items-start gap-5">
-                <div class="w-60 bg-red-500">
-                    <div class="w-full h-52 bg-yellow-500"></div>
-                    <div class="flex justify-between items-center px-4 py-4">
-                        <div>
-                            <h3>Clinge Bag</h3>
-                            <h4>₹ 1200</h4>
-                        </div>
-                        <a class="w-7 h-7 flex items-center justify-center rounded-full bg-white" href="">
-                            <i class="ri-add-line"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="w-60 bg-red-500">
-                    <div class="w-full h-52 bg-yellow-500"></div>
-                    <div class="flex justify-between items-center px-4 py-4">
-                        <div>
-                            <h3>Clinge Bag</h3>
-                            <h4>₹ 1200</h4>
-                        </div>
-                        <a class="w-7 h-7 flex items-center justify-center rounded-full bg-white" href="">
-                            <i class="ri-add-line"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="w-60 bg-red-500">
-                    <div class="w-full h-52 bg-yellow-500"></div>
-                    <div class="flex justify-between items-center px-4 py-4">
-                        <div>
-                            <h3>Clinge Bag</h3>
-                            <h4>₹ 1200</h4>
-                        </div>
-                        <a class="w-7 h-7 flex items-center justify-center rounded-full bg-white" href="">
-                            <i class="ri-add-line"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="w-60 bg-red-500">
-                    <div class="w-full h-52 bg-yellow-500"></div>
-                    <div class="flex justify-between items-center px-4 py-4">
-                        <div>
-                            <h3>Clinge Bag</h3>
-                            <h4>₹ 1200</h4>
-                        </div>
-                        <a class="w-7 h-7 flex items-center justify-center rounded-full bg-white" href="">
-                            <i class="ri-add-line"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="flex items-start gap-5">
-                <div class="w-60 bg-red-500">
-                    <div class="w-full h-52 bg-yellow-500"></div>
-                    <div class="flex justify-between items-center px-4 py-4">
-                        <div>
-                            <h3>Clinge Bag</h3>
-                            <h4>₹ 1200</h4>
-                        </div>
-                        <a class="w-7 h-7 flex items-center justify-center rounded-full bg-white" href="">
-                            <i class="ri-add-line"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="w-60 bg-red-500">
-                    <div class="w-full h-52 bg-yellow-500"></div>
-                    <div class="flex justify-between items-center px-4 py-4">
-                        <div>
-                            <h3>Clinge Bag</h3>
-                            <h4>₹ 1200</h4>
-                        </div>
-                        <a class="w-7 h-7 flex items-center justify-center rounded-full bg-white" href="">
-                            <i class="ri-add-line"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="w-60 bg-red-500">
-                    <div class="w-full h-52 bg-yellow-500"></div>
-                    <div class="flex justify-between items-center px-4 py-4">
-                        <div>
-                            <h3>Clinge Bag</h3>
-                            <h4>₹ 1200</h4>
-                        </div>
-                        <a class="w-7 h-7 flex items-center justify-center rounded-full bg-white" href="">
-                            <i class="ri-add-line"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="w-60 bg-red-500">
-                    <div class="w-full h-52 bg-yellow-500"></div>
-                    <div class="flex justify-between items-center px-4 py-4">
-                        <div>
-                            <h3>Clinge Bag</h3>
-                            <h4>₹ 1200</h4>
-                        </div>
-                        <a class="w-7 h-7 flex items-center justify-center rounded-full bg-white" href="">
-                            <i class="ri-add-line"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+<div class="w-full h-screen flex items-start px-10 py-10 bg-gray-50">
+    <div class="w-[20%] h-screen flex flex-col items-start p-5 bg-white shadow-lg">
+        <div class="flex flex-col gap-3">
+            <a class="block w-fit mb-2 text-lg text-gray-600 font-medium hover:text-gray-800" href="/ownerRoute/admin">All Products</a>
+            <a class="block w-fit mb-2 text-lg text-gray-600 font-medium hover:text-gray-800" href="/ownerRoute/products">Create new product</a>
         </div>
     </div>
-    <%- include('footer') %>
+
+    <div class="w-[80%] flex flex-wrap gap-6 p-5 overflow-y-auto">
+        <a class="text-red-500 font-bold text-lg hover:underline mb-5" href="/ownerRoute/deleteAll">Delete all</a> <!-- Updated delete all link -->
+        <% products.forEach(function(p) { %>
+        <div class="w-[22%] p-4 bg-[<%=p.panelcolor%>] shadow-lg rounded-lg hover:shadow-xl transition transform hover:scale-105">
+            <div class="w-full bg-[<%=p.bgcolor%>] rounded-lg flex items-center justify-center overflow-hidden">
+                <!-- Image with controlled size -->
+                <img src="data:image/jpeg;base64,<%= p.image.toString('base64') %>" alt="Product Image" class="w-full h-32 object-contain"/>
+            </div>
+            <div class="px-4 py-3">
+                <h3 class="text-lg font-semibold text-[<%=p.textcolor%>]"><%= p.name %></h3>
+                <h4 class="text-[<%=p.textcolor%>]">₹ <%= p.price %></h4>
+
+                <!-- Edit and Delete buttons -->
+                <div class="flex justify-between mt-4">
+                    <!-- Edit Button (links to the edit route) -->
+                    <a href="/ownerRoute/edit/<%= p._id %>" class="w-[48%] py-2 bg-blue-500 text-white text-center rounded-lg hover:bg-blue-600">Edit</a>
+
+                    <!-- Delete Button (inside a form to handle POST request) -->
+                    <form action="/ownerRoute/delete/<%= p._id %>" method="POST" class="w-[48%]">
+                        <button type="submit" class="w-full py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <% }) %>
+    </div>
+</div>
+<%- include('footer') %>

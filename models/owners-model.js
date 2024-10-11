@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const product=require("../models/product-model")
 const ownerSchema = mongoose.Schema({
   username: {
     type: String,
@@ -8,11 +8,12 @@ const ownerSchema = mongoose.Schema({
   },
   email: String,
   password: String,
-  products: {
-    type: [String],
-    default: [],
-  },
-  gst: String,
+  cart: [{
+    type: mongoose.Schema.Types.ObjectId,
+   ref:product,
+   default:[]
+  }],
+ 
 });
 
-module.exports = mongoose.model("User", ownerSchema);
+module.exports = mongoose.model("Owner", ownerSchema);
