@@ -41,7 +41,7 @@
         <div class="mt-5">
             <div class="flex justify-between mt-2">
                 <h4>Total MRP</h4>
-                <h4>₹ <%=sum%></h4>
+                <h4>₹ <%= sum %></h4>
             </div>
             <div class="flex justify-between mt-2">
                 <h4>Discount on MRP</h4>
@@ -59,9 +59,16 @@
         <div class="w-full h-[1px] bg-gray-300 my-5"></div>
         <div class="flex justify-between font-semibold">
             <h3 class="text-xl">Total Amount</h3>
-            <h3 class="text-xl text-green-600">₹ <%=totalsum%></h3>
-        </div>
-        <button class="w-full mt-5 bg-green-600 text-white rounded-md py-2 font-semibold">Proceed to Checkout</button>
-    </div>
+            <h3 class="text-xl text-green-600">₹ <%= totalsum %></h3>
+            
+        <div>
+
+                <button onclick="window.location.href='/checkout'" class=" mt-5 bg-green-600 text-white rounded-md py-2 font-semibold">
+                    Proceed to Checkout
+                </button>
+            </div>
+              
 </div>
+
+
 <%- include('footer') %>

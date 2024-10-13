@@ -1,0 +1,34 @@
+<%- include('header') %>
+
+<h2>Checkout Page</h2>
+<p>Total Amount: ₹<%= totalsum %></p>
+
+<button id="checkout-button" class="w-full mt-5 bg-green-600 text-white rounded-md py-2 font-semibold">
+  Proceed to Payment
+</button>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  const stripe = Stripe('pk_test_51Q9LfRIRzHYFy2LMulINL5Al1WZ9o37qxOJpVk8Oo2yphRWA12YNz7ATekureaoNR39tvt2VbtBJvNuJCb6OTja900uJjp8xOc'); // Use your Stripe publishable key
+  
+  document.getElementById('checkout-button').addEventListener('click', async () => {
+    const response = await fetch('/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ amount: "<%= totalsum %>" })
+    });
+
+    const session = await response.json();
+
+    // Redirect to Stripe Checkout
+    const result = await stripe.redirectToCheckout({
+      sessionId: session.id
+    });
+
+    if (result.error) {
+      alert(result.error.message);
+    }
+  });
+</script>
+
+<%- include('footer') %>

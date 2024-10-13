@@ -3,7 +3,7 @@ const productmodel=require("../models/product-model")
 const router=express.Router();
 const { isloggedin }=require("../middlewares/isloggedin")
 const User=require("../models/user-model");
-
+const stripe = require('stripe')(process.env.PAYMENT_KEY);
 router.get("/",(req,res)=>{
 res.render("firstpage")
 })
@@ -23,6 +23,10 @@ user.cart.forEach(function(p){
 let totalsum=sum+20;
      res.render("cart",{user,sum,totalsum});
  });
+router.get('/checkout', (req, res) => {
+  res.render('checkout', { totalsum: 1500});
+});
+
 
 module.exports=router;
 
