@@ -18,7 +18,7 @@ router.get("/", (req, res) => {
 
 router.get("/shop", async (req, res) => {
     const products=await productmodel.find();
- res.render("shop",{products});
+ res.render("shop",{products,s:true});
 });
 
 

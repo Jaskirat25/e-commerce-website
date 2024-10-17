@@ -11,7 +11,9 @@ discount:{
 },
 bgcolor:String,
 panelcolor:String,
-textcolor:String
-
+textcolor:String,
+added:{
+    type:Boolean,
+    default:false,}
 });
 module.exports=mongoose.model("product",productSchema);
